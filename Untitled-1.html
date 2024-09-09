@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نسوااااان</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.pinimg.com/564x/5a/53/b8/5a53b86f741d05287d309cf38eb86268.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        #rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .drop {
+            position: absolute;
+            font-size: 20px;
+            color: white;
+            white-space: nowrap;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #007bff;
+            position: relative;
+            z-index: 1;
+        }
+        #stopButton {
+            display: none;
+        }
+        #image {
+            display: none;
+            margin-top: 20px;
+        }
+        #image img {
+            max-width: 100%;
+        }
+        .copyright {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #fff;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" id="rainButton">ابدأ المطر</button>
+        <button class="button" id="stopButton">توقيف المطر</button>
+        <div id="rain"></div>
+        <div id="image">
+            <img src="https://via.placeholder.com/400x200?text=%D8%B5%D9%84%D9%8A+%D8%B9%D9%84%D9%89+%D8%A7%D9%84%D8%A8%D9%8A" alt="صلي على النبي">
+        </div>
+        <div class="copyright">تورج و محمد</div>
+    </div>
+
+    <script>
+        const rainButton = document.getElementById('rainButton');
+        const stopButton = document.getElementById('stopButton');
+        const rain = document.getElementById('rain');
+        const image = document.getElementById('image');
+
+        function startRain() {
+            stopButton.style.display = 'inline-block';
+            rain.innerHTML = '';
+            const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
+            for (let i = 0; i < 200; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.textContent = 'نسوان نسوان';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.fontSize = Math.random() * 20 + 20 + 'px'; // Random font size
+                drop.style.color = colors[Math.floor(Math.random() * colors.length)]; // Random color
+                drop.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration between 2s and 5s
+                drop.style.animationDelay = Math.random() * 5 + 's'; // Random delay
+                rain.appendChild(drop);
+            }
+        }
+
+        function stopRain() {
+            stopButton.style.display = 'none';
+            rain.innerHTML = '';
+            image.style.display = 'block';
+        }
+
+        rainButton.addEventListener('click', startRain);
+        stopButton.addEventListener('click', stopRain);
+    </script>
+</body>
+</html>
